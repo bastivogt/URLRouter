@@ -28,8 +28,11 @@ URLRouter.onRoute = (route) => {
 
     ContentLoader.onLoadFinish = (container) => {
         console.log("onLoadFinish")
-        elements.main.style.visibility = "visible"
-        elements.main.style.opacity = 1
+        setTimeout(() => {
+            elements.main.style.visibility = "visible"
+            elements.main.style.opacity = 1
+        }, 200)
+
     }
     ContentLoader.load(route.path, elements.content, 200)
 

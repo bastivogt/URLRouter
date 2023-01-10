@@ -10,7 +10,7 @@ export class ContentLoader {
 
 
 
-    static load(file, container, delay = 0) {
+    static load(file, container) {
         if(ContentLoader.onLoadInit != null) ContentLoader.onLoadInit(container)
         fetch(file)
             .then((res) => {
@@ -22,9 +22,7 @@ export class ContentLoader {
             .then((data) => {
                 container.innerHTML = data
                 if(ContentLoader.onLoadFinish != null) {
-                    window.setTimeout(() => {
-                        ContentLoader.onLoadFinish(container)
-                    }, delay)
+                    ContentLoader.onLoadFinish(container)
             }
                 
 
