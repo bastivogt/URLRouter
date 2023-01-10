@@ -33,8 +33,5 @@ export class URLRouter {
         const path = window.location.pathname
         const route = URLRouter.routes[path] || URLRouter.routes[URLRouter._404]
         if(URLRouter.onRoute != null) URLRouter.onRoute(route)
-        console.log(window.location.href)
-        console.log(URLRouter.currentRoute)
-
     }
 }
