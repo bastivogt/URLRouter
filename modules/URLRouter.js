@@ -4,7 +4,7 @@ export class URLRouter {
     constructor() {}
 
     static routes;
-    static onRoute = null
+    static onRoute = null // URLRouter.onRoute = (route) => {}
 
     static init(routes) {
         URLRouter.routes = routes

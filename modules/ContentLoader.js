@@ -4,13 +4,13 @@ export class ContentLoader {
     constructor() {}
 
     static errorMSG = "Fehler beim Laden!"
-    static onLoadFinish = null
-    static onLoadInit = null
+    static onLoadFinish = null // ContentLoader.onLoadFinish = (container) => {}
+    static onLoadInit = null // ContentLoader.onLoadInit = (container) => {}
 
 
 
 
-    static load(file, container) {
+    static load(file, container, delay = 0) {
         if(ContentLoader.onLoadInit != null) ContentLoader.onLoadInit(container)
         fetch(file)
             .then((res) => {
@@ -21,7 +21,12 @@ export class ContentLoader {
             })
             .then((data) => {
                 container.innerHTML = data
-                if(ContentLoader.onLoadFinish != null) ContentLoader.onLoadFinish(container)
+                if(ContentLoader.onLoadFinish != null) {
+                    window.setTimeout(() => {
+                        ContentLoader.onLoadFinish(container)
+                    }, delay)
+            }
+                
 
             })
         
