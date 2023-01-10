@@ -6,9 +6,11 @@ export class URLRouter {
     static routes
     static onRoute = null // URLRouter.onRoute = (route) => {}
     static currentRoute = ""
+    static _404 = "/404"
 
     static init(routes) {
         URLRouter.routes = routes
+        URLRouter.currentRoute = window.location.href
 
 
         URLRouter.handleRoute()
@@ -21,15 +23,18 @@ export class URLRouter {
     static setRoute(route) {
         if(URLRouter.currentRoute !== route) {
             window.history.pushState({}, "", route)
-            URLRouter.handleRoute()
             URLRouter.currentRoute = route
+            URLRouter.handleRoute()         
         }
+
     }
 
     static handleRoute() {
         const path = window.location.pathname
-        const route = URLRouter.routes[path] || URLRouter.routes["/404"]
+        const route = URLRouter.routes[path] || URLRouter.routes[URLRouter._404]
         if(URLRouter.onRoute != null) URLRouter.onRoute(route)
+        console.log(window.location.href)
+        console.log(URLRouter.currentRoute)
 
     }
 }
