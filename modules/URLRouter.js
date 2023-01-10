@@ -3,11 +3,13 @@
 export class URLRouter {
     constructor() {}
 
-    static routes;
+    static routes
     static onRoute = null // URLRouter.onRoute = (route) => {}
+    static currentRoute = ""
 
     static init(routes) {
         URLRouter.routes = routes
+
 
         URLRouter.handleRoute()
         window.addEventListener("popstate", (e) => {
@@ -17,8 +19,11 @@ export class URLRouter {
     }
 
     static setRoute(route) {
-        window.history.pushState({}, "", route)
-        URLRouter.handleRoute()
+        if(URLRouter.currentRoute !== route) {
+            window.history.pushState({}, "", route)
+            URLRouter.handleRoute()
+            URLRouter.currentRoute = route
+        }
     }
 
     static handleRoute() {
