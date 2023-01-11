@@ -32,6 +32,10 @@ URLRouter.onRoute = (route) => {
             elements.main.style.visibility = "visible"
             elements.main.style.opacity = 1
         }, 200)
+        // auf Elemente zugreifen in der Datei contact.html
+        if(route === routes["/contact"]) {
+            document.getElementById("mail").innerText = "sevodo.dessau@gmail.com"
+        }
 
     }
     ContentLoader.load(route.path, elements.content, 200)
